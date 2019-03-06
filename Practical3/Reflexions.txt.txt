@@ -1,3 +1,5 @@
 Did everything go well? 
 Are there things that were challenging? 
 What questions do you have?
+
+1. If I don't want to commit a change, what can I do?
