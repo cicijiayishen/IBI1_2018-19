@@ -3,8 +3,14 @@ Are there things that were challenging?
 What questions do you have?
 
 1. If I don't want to commit a change, what can I do?
+A: Change the all typo at once!
 2. After I change the name of the file, I cannot open on GitKraken.
+A: Be careful to choose the repository name!
 3. The website page can only read README but not index.
 A: README only works to readme, index only work as index. If they both exist, index is read.
 4. index.md cannot be edit in NOTEPAD.
 A: ".md"- markdown
+5. Change the commit message?
+A: You can only change the latest one.
+6. Manage the repository without leaving GitKraken?
+A: No.
