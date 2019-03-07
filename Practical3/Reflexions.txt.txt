@@ -5,3 +5,4 @@ What questions do you have?
 1. If I don't want to commit a change, what can I do?
 2. After I change the name of the file, I cannot open on GitKraken.
 3. The website page can only read README but not index.
+4. index.md cannot be edit in NOTEPAD.
