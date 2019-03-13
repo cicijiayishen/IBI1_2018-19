@@ -11,12 +11,12 @@ a=2019
 n=13   
 while x!=0:
     if n>=0:
-        if x ==2**n:
+        if x == 2**n:
+            print("+2**",n)
             break
-            print(n)
         elif x > 2**n:
             x=x-2**n
-            print(n)
+            print("+2**",n)
             n=n-1
         elif x < 2**n:
             n=n-1
