@@ -12,11 +12,14 @@ from math import ceil
 
 p=False
 while p==False:
+    #p is True than the loop is stopped
     p=True
     n = randint(1,100)
+    #u is the ceiling of root of n
     u = ceil(n**(0.5))
     for i in range(2,u+1):
         if n%i == 0:
+            #p is False, then go another loop
             p=False
 
 
