@@ -6,11 +6,9 @@ Created on Wed Mar 13 10:27:05 2019
 """
 
 #assign x as a positive integer
-x=2019
-#a=x
-a=2019
+x=31
 #write the template of the outcome 
-b=str(a)+" is "
+b=str(x)+" is "
 c="2**"
 #find the biggest 2**n that is smaller than x
 #power no bigger than 13
