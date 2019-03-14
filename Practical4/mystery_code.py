@@ -10,10 +10,12 @@ from random import randint
 # e.g. ceil(4.2)=5
 from math import ceil
 
+#p is asking whether the number is prime or not.
 p=False
 while p==False:
     #p is True than the loop is stopped
     p=True
+    #draw a random integer from 1 to 100
     n = randint(1,100)
     #u is the ceiling of root of n
     u = ceil(n**(0.5))

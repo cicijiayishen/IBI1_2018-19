@@ -6,7 +6,7 @@ Created on Wed Mar 13 10:27:05 2019
 """
 
 #assign x as a positive integer
-x=31
+x=2019
 #write the template of the outcome 
 b=str(x)+" is "
 c="2**"
