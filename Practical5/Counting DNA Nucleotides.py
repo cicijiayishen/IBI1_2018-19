@@ -4,9 +4,11 @@ Created on Wed Mar 20 09:04:47 2019
 
 @author: sissy
 """
-
+#give me a sequence of DNA
 DNA = "AGCTTTTCATTCTGACTGCAACGGGCAATATGTCTCTGTGTGGATTAAAAAAAGAGTGTCTGATAGCAGC"
+#split the sequence into letters
 DNA=list(DNA)
+#create a dictionary
 myDict = {}
 for word in DNA:
     if word in myDict:
@@ -14,7 +16,8 @@ for word in DNA:
     else:
         myDict[word] = 1
 myDict
-
+print(myDict)
+#assign value to ATGC
 A=myDict['A']
 T=myDict['T']
 G=myDict['G']
@@ -23,11 +26,9 @@ C=myDict['C']
 import matplotlib.pyplot as plt
 labels = 'A', 'T', 'G', 'C'
 sizes = [A, T, G, C]
-explode = (0, 0, 0, 0)  # only "explode" the 2nd slice (i.e. 'Hogs')
-
+explode = (0, 0, 0, 0)
 fig1, ax1 = plt.subplots()
 ax1.pie(sizes, explode=explode, labels=labels, autopct='%1.1f%%',
         shadow=True, startangle=90)
 ax1.axis('equal')  # Equal aspect ratio ensures that pie is drawn as a circle.
-
 plt.show()
