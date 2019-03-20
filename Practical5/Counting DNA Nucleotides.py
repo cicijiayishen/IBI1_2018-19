@@ -20,6 +20,7 @@ T=myDict['T']
 G=myDict['G']
 C=myDict['C']
 # Pie chart, where the slices will be ordered and plotted counter-clockwise:
+import matplotlib.pyplot as plt
 labels = 'A', 'T', 'G', 'C'
 sizes = [A, T, G, C]
 explode = (0, 0, 0, 0)  # only "explode" the 2nd slice (i.e. 'Hogs')
