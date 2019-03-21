@@ -11,21 +11,26 @@ s="but soft what light in yonder window breaks"
 s=s.split(' ')
 n=0
 #creating an empty list
+
 L=[]
-while 1==1:
-    sn=s[n]
+#improved loop
+for element in s:
+    L.append(element[::-1])
+   
+#while 1==1:
+    #sn=s[n]
     #split the word into individual letters
-    ln=list(sn)
+    #ln=list(sn)
     #reverse the letters
-    ln.reverse()
+    #ln.reverse()
     #join the reversed letters into words
-    jn=''.join(ln)
+    #jn=''.join(ln)
     #add into the list
-    L.append(jn)
-    n=n+1
+    #L.append(jn)
+    #n=n+1
     #len(s)-1
-    if n>len(s)-1:
-        break
+    #if n>len(s)-1:
+     #   break
 #sort the list
 L.sort()
 #reverse the list

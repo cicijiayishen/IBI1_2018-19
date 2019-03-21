@@ -11,22 +11,25 @@ DNA=list(DNA)
 #create a dictionary
 myDict = {}
 for word in DNA:
-    if word in myDict:
-        myDict[word] += 1
-    else:
-        myDict[word] = 1
+    #ignore other letters
+    if word in ['A','T','G','C']:
+        if word in myDict:
+            myDict[word] += 1
+        else:
+            myDict[word] = 1
 myDict
 print(myDict)
 #assign value to ATGC
-A=myDict['A']
-T=myDict['T']
-G=myDict['G']
-C=myDict['C']
+#A=myDict['A']
+#T=myDict['T']
+#G=myDict['G']
+#C=myDict['C']
 # Pie chart, where the slices will be ordered and plotted counter-clockwise:
 import matplotlib.pyplot as plt
-labels = 'A', 'T', 'G', 'C'
-sizes = [A, T, G, C]
-explode = (0, 0, 0, 0)
+labels = myDict.keys()
+sizes = myDict.values()
+#sizes = [A, T, G, C]
+explode = [0]*len(labels)
 fig1, ax1 = plt.subplots()
 ax1.pie(sizes, explode=explode, labels=labels, autopct='%1.1f%%',
         shadow=True, startangle=90)
