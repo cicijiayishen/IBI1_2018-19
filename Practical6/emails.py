@@ -5,6 +5,9 @@ Created on Wed Mar 27 09:08:43 2019
 @author: sissy
 """
 import re
+import smtplib
+from email.mime.text import MIMEText
+from email.header import Header
 address=open(r'C:\Users\sissy\Desktop\test Git\IBI1_2018-19\Practical6\address_information.csv','r')
 r=[]
 for line in address:
@@ -16,20 +19,13 @@ for line in address:
                 continue
             print(fields[1],": Correct Address!")
             r.append(fields[1])
-
-import smtplib
-from email.mime.text import MIMEText
-from email.header import Header
- 
 mail_host="smtp.zju.edu.cn"  
 mail_user="3180111441"    
 mail_pass="sjy20090218"   
 Users=['Anna','Mary','Emma']
-
 n=0
 sender = '3180111441@zju.edu.cn'
 print("From:",sender)
-
 while n<len(Users):
     receivers = r[n]  # 接收邮件，可设置为你的QQ邮箱或者其他邮箱
     m='Dear '+ Users[n]+ ",\nPlease find the results of your gene set linkage analysis result in attached file.\nThis is an email sent by the server, please don't reply.\nThank you for using GSLA."
@@ -43,10 +39,10 @@ while n<len(Users):
         smtpObj.connect('smtp.zju.edu.cn', 25)    # 25 为 SMTP 端口号
         smtpObj.login(mail_user,mail_pass) 
         smtpObj.sendmail(sender, receivers, message.as_string())
+        smtpObj.quit()
         print ("Mail sent successfully!")
     except smtplib.SMTPException:
         print ("Error! Can not send the email.")
     n=n+1
     if n>=len(Users):
         break
-    
