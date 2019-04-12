@@ -68,7 +68,7 @@ The code for week 4 is great. There is no need to change anything.
 
 This asssesment is formative and does not form part of your final grade. 
 
-If this was a summative assessment, you would have scored 91 out of 100
+
 
 
 
