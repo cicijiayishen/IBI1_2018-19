@@ -50,5 +50,5 @@ for i in range(len(seq1)): #compare each amino acid
         #edit_distance +=1 #add a score 1 if amino acids are different
 print("Sequence 1:",seq01)
 print("Sequence 2:",seq02)
-print("The BLOSUM score is:",score)
+print("The BLOSUM62 score is:",score)
 print("The percentage identity is:",count)
