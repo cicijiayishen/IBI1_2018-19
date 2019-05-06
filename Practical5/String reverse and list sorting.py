@@ -6,7 +6,7 @@ Created on Wed Mar 20 10:04:34 2019
 """
 
 #give me a string of words
-s="but soft what light in yonder window breaks"
+s=input('Please input a string of words:')
 #split s into individual words
 s=s.split(' ')
 n=0

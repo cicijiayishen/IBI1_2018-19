@@ -5,7 +5,7 @@ Created on Wed Mar 20 09:04:47 2019
 @author: sissy
 """
 #give me a sequence of DNA
-DNA = "AGCTTTTCATTCTGACTGCAACGGGCAATATGTCTCTGTGTGGATTAAAAAAAGAGTGTCTGATAGCAGC"
+DNA=input('Please input a DNA sequence:')
 #split the sequence into letters
 DNA=list(DNA)
 #create a dictionary
