@@ -4,62 +4,70 @@ Created on Wed Apr  3 09:01:11 2019
 
 @author: sissy
 """
-L=input("Please input numbers to compute 24:(use ',' to divide them)")
-L_list=L.split(",")
-print(L_list)
-for i in range(1, len(L)+1):
-    L_list=[int(L[i])]
-print(L_list)
-def compute(x,y,op):
-    if op=='+':return x+y
-    elif op=='*':return x*y
-    elif op=='-':return x-y
-    else:return x/y if y else None
-
-def exp(p,iter=0):
-    from itertools import permutations
-    if len(p)==1:
-        return [(p[0],str(p[0]))]
-    operation = ['+','-','*','/']
-    ret = []
-    p = permutations(p) if iter==0 else [p]
-    for array_n in p:
-        #print(array_n)
-        for num in range(1,len(array_n)):
-            ret1 = exp(array_n[:num],iter+1)
-            ret2 = exp(array_n[num:],iter+1)
-            for op in operation:
-                for va1,expression in ret1:
-                    if va1==None:continue
-                    for va2,expression2 in ret2:
-                        if va2==None:continue
-                        combined_exp = '{}{}' if expression.isalnum() else '({}){}'
-                        combined_exp += '{}' if expression2.isalnum() else '({})'
-                        new_val = compute(va1,va2,op)
-                        ret.append((new_val,combined_exp.format(expression,op,expression2)))
-                        if iter==0 and new_val==24:
-                            return ''.join(e+'\n' for x,e in ret if x==24)
-    return ret
-print(exp([L]))
 
 import re
-string=input("Please input numbers to compute 24:(use ',' to divide them)")
-list_of_numbers=re.split(r',',string)
-print(list_of_numbers)
-valid_numbers=[]
-count=0 #use tuple to returen 2 variables
-cc=False
-if check():
-    select(valid_numbers)
+from fractions import Fraction
+#input the numbers
+L=input("Please input numbers to compute 24:(use ',' to divide them)")
+L_list=L.split(",")
+re_numtest=re.compile(r'(^[1-9]$)|(^1[0-9]$)|(^2[0-3]$)')
+#check whether the numbers are in range 1 to 23
+for char in L_list:
+    if re_numtest.match(char):
+        continue
+    else:
+        print('The input number must be intergers from 1 to 23')
+        break
+num = list(map(int,L_list))
+print(num)
+count=0
+n=len(num)
+
+def calculate(a,b,cal):
+    if cal==0:
+        return(a+b)
+    elif cal==1:
+        return(a-b)
+    elif cal==2:
+        return(b-a)
+    elif cal==3:
+        return(a*b)
+    elif cal==4 and b!=0:
+        return(Fraction(a,b))
+    elif cal==5 and a!=0:
+        return(Fraction(b,a))
+def points(number):
+    global count
+    count = count+1
+    
+    if n == 1:
+        if(float(num[0])==24):
+            return 1 #Find the solution
+        else:
+            return 0 #Do not find solution
+    #select two different numbers
+
+    for i in range(0,n):
+        count+=1
+        for j in range(i+1,n):
+            count+=1
+            for cal in range(0,6):
+                count+=1
+                a = num[i]
+                b = num[j]
+                num[j] = num[n-1]
+                num[i] = calculate(a,b,cal)
+            if(points(n-1)):
+                return 1
+            #Backtracking  
+            num[i] = a
+            num[j] = b
+    return 0
+
+if (points(len(num))): 
+    print('Yes')
+else: 
+    print('No')
+print('Recursion times:',count)
 
 
-
-def check():
-    for i in range(1,len(list_of_numbers)+1):
-        num=int(list_of_numbers[i])
-        print(num)
-        if num>24 or num<1:
-            return(-1)
-            
-
-#complexity=e的n次方，e^n
