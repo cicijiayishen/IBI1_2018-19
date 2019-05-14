@@ -12,10 +12,10 @@ outbreak=np.random.choice(range(100),2)
 population[outbreak[0],outbreak[1]]=1
 beta=0.3
 gamma=0.05
-# find infected points
-infectedIndex = np.where(population==1)
-# loop through all infected points
-for n in range(0,100):
+for n in range(0,101):
+    # find infected points
+    infectedIndex = np.where(population==1)
+    # loop through all infected points
     for i in range(len(infectedIndex[0])):
         # get x, y coordinates for each point
         x = infectedIndex[0][i]
@@ -31,6 +31,7 @@ for n in range(0,100):
                         # only infect neighbours that are not already infected!
                         if population[xNeighbour,yNeighbour]==0:
                             population[xNeighbour,yNeighbour]=np.random.choice(range(2),1,p=[1-beta,beta])[0]
-        population[x,y]=np.random.choice(range(2),1,p=[1-gamma,gamma])[0]
-plt.figure(figsize=(6,4),dpi=150)
-plt.imshow(population,cmap='viridis',interpolation='nearest')
+        population[x,y]=np.random.choice(range(1,3),1,p=[1-gamma,gamma])[0]
+    if n==0 or n==10 or n==50 or n==100:
+        plt.figure(figsize=(6,4),dpi=150)
+        plt.imshow(population,cmap='viridis',interpolation='nearest')
