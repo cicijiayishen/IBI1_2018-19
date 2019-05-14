@@ -5,21 +5,37 @@ Created on Wed Apr 10 09:05:01 2019
 @author: sissy
 """
 
-from xml.dom.minidom import parse
-import  xml.dom.minidom
-#import pandas as pd
-DOMTree = xml.dom.minidom.parse(r'C:\Users\sissy\Desktop\test Git\IBI1_2018-19\Practical8\go_obo.xml')
-collection = DOMTree.documentElement
-#<?xml version="1.0" encoding="UTF-8"?>
-#df = pd.DataFrame(columns=['id','name','definition','childnodes'])
-terms = collection.getElementsByTagName("term")
-for term in terms:
-    defstr = term.getElementsByTagName('defstr')[0]
-    if "autophagosome" in defstr.childNodes[0].data:
-        print("*****GO*****")
-        id = term.getElementsByTagName('id')[0]
-        print('id:',id.childNodes[0].data)
-        name = term.getElementsByTagName('name')[0]
-        print('name:',name.childNodes[0].data)
-        print('definition:',defstr.childNodes[0].data)
-        #df = df.append(pd.DataFrame({'id':[id],'name':[name],'definition':[defstr],'childnodes':[childnodes]}))
+import xml.dom.minidom
+import re
+import pandas as pd
+
+filePath=input('Please input your file path:')#Your file path
+
+re_immu = re.compile(r'autophagosome')
+#Function to find childnodes 
+def Child(id, resultSet):
+    for t in go:
+        parents = t.getElementsByTagName('is_a')
+        geneid = t.getElementsByTagName('id')[0].childNodes[0].data
+        for parent in parents:
+            if parent.childNodes[0].data == id:
+                resultSet.add(geneid)
+                Child(geneid, resultSet)
+                
+#create a pandas.Dataframe to store the output
+df = pd.DataFrame(columns=['id','name','definition','childnodes'])
+
+#create the DOM tree    
+DOMTree = xml.dom.minidom.parse(filePath) 
+obo = DOMTree.documentElement
+go = obo.getElementsByTagName('term')
+for term in go:
+    defstr = term.getElementsByTagName('defstr')[0].childNodes[0].data
+    #find terms that contain the word 'autophagosome'
+    if re_immu.search(defstr):
+        id = term.getElementsByTagName('id')[0].childNodes[0].data
+        name = term.getElementsByTagName('name')[0].childNodes[0].data
+        resultSet = set()
+        Child(id, resultSet)
+        df = df.append(pd.DataFrame({'id':[id],'name':[name],'definition':[defstr],'childnodes':[len(resultSet)]})) 
+        print(id, len(resultSet))
