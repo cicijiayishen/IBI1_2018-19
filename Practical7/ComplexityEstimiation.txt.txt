@@ -1,0 +1,5 @@
+First choose two numbers from the list, then operate them (6 options).
+If the result is equal to 24, then the recursion ends.
+If not, keep doing it.
+The complexity of this code is not very high.
+It is a good way to do it.
