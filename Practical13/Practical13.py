@@ -58,3 +58,4 @@ def xml_to_cps():
 
 
 xml_to_cps()
+os.system('CopasiSE.exe predator-prey.cps')
