@@ -1,10 +1,13 @@
-#!/usr/bin/env python3
 # -*- coding: utf-8 -*-
 """
-Created on Wed May 15 03:23:00 2019
+Created on Wed May 15 09:12:42 2019
 
-@author: melanie
+@author: sissy
 """
+
+import os
+os.chdir(r'C:\Users\sissy\Desktop\test Git\IBI1_2018-19\Practical13')
+
 def xml_to_cps():
     import os
     import xml.dom.minidom
