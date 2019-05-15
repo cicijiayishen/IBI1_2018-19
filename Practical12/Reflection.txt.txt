@@ -1,0 +1,5 @@
+The practical is a little bit hard.
+Most of my time was spent on the first task "A simple SIR model".
+The most difficult thing for me was to use np.random.choice() function and count the number of S/I/R.
+I was really excited when I successfully wrote the code.
+The most important thing I learned from this practical was to think carefully what happens before actually starting to write the code.

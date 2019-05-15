@@ -2,16 +2,21 @@
 """
 Created on Wed May  8 16:10:27 2019
 
-@author: sissy
+@author: cici
+Practical 12: Modelling infections
+Part 3: Looking at disease spread in 2D
 """
-
+#import necessary libraries
 import numpy as np
 import matplotlib.pyplot as plt
+#make array for all susceptible population
 population=np.zeros((100,100))
-outbreak=np.random.choice(range(100),2)
+outbreak=np.random.choice(range(100),2)#randomly choose where the outbreak will be
 population[outbreak[0],outbreak[1]]=1
+#set parameters
 beta=0.3
 gamma=0.05
+#loop for 100 time points
 for n in range(0,101):
     # find infected points
     infectedIndex = np.where(population==1)
@@ -32,6 +37,7 @@ for n in range(0,101):
                         if population[xNeighbour,yNeighbour]==0:
                             population[xNeighbour,yNeighbour]=np.random.choice(range(2),1,p=[1-beta,beta])[0]
         population[x,y]=np.random.choice(range(1,3),1,p=[1-gamma,gamma])[0]
+    #plot graphs
     if n==0 or n==10 or n==50 or n==100:
         plt.figure(figsize=(6,4),dpi=150)
         plt.imshow(population,cmap='viridis',interpolation='nearest')
