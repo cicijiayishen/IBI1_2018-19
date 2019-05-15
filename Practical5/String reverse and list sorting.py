@@ -2,7 +2,8 @@
 """
 Created on Wed Mar 20 10:04:34 2019
 
-@author: sissy
+@author: cici
+Practical 5: Working with numbers
 """
 
 #give me a string of words
@@ -16,21 +17,6 @@ L=[]
 #improved loop
 for element in s:
     L.append(element[::-1])
-   
-#while 1==1:
-    #sn=s[n]
-    #split the word into individual letters
-    #ln=list(sn)
-    #reverse the letters
-    #ln.reverse()
-    #join the reversed letters into words
-    #jn=''.join(ln)
-    #add into the list
-    #L.append(jn)
-    #n=n+1
-    #len(s)-1
-    #if n>len(s)-1:
-     #   break
 #sort the list
 L.sort()
 #reverse the list
