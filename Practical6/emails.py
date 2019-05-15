@@ -2,32 +2,39 @@
 """
 Created on Wed Mar 27 09:08:43 2019
 
-@author: sissy
+@author: cici\
+Practical 6: Working with strings
 """
+#import necessary libraries
 import re
 import smtplib
 from email.mime.text import MIMEText
 from email.header import Header
+#open csv file
 address=open(r'C:\Users\sissy\Desktop\test Git\IBI1_2018-19\Practical6\address_information.csv','r')
 r=[]
+#get information from csv file
 for line in address:
     fields=line.split(r',')
     if (len(fields)>1):
         if re.match(r'(\S+)@(\S+)',fields[1]):
+            #check the email address
             if not '.com' in fields[1]:
                 print(fields[1],": Wrong Address!")
                 continue
+            #print the results of address validation
             print(fields[1],": Correct Address!")
             r.append(fields[1])
+#send emails
 mail_host="smtp.zju.edu.cn"  
-mail_user="3180111441"    
-mail_pass="sjy20090218"   
+mail_user=input('Please input user name:')   
+mail_pass=input('Please input password:')   
 Users=['Anna','Mary','Emma']
 n=0
 sender = '3180111441@zju.edu.cn'
 print("From:",sender)
 while n<len(Users):
-    receivers = r[n]  # 接收邮件，可设置为你的QQ邮箱或者其他邮箱
+    receivers = r[n]
     m='Dear '+ Users[n]+ ",\nPlease find the results of your gene set linkage analysis result in attached file.\nThis is an email sent by the server, please don't reply.\nThank you for using GSLA."
     message = MIMEText(m, 'plain', 'utf-8')
     message['From'] = Header("Cici", 'utf-8')
@@ -36,7 +43,7 @@ while n<len(Users):
     message['Subject'] = Header(subject, 'utf-8')    
     try:
         smtpObj = smtplib.SMTP() 
-        smtpObj.connect('smtp.zju.edu.cn', 25)    # 25 为 SMTP 端口号
+        smtpObj.connect('smtp.zju.edu.cn', 25)
         smtpObj.login(mail_user,mail_pass) 
         smtpObj.sendmail(sender, receivers, message.as_string())
         smtpObj.quit()
