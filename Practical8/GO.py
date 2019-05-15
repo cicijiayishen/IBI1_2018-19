@@ -2,14 +2,18 @@
 """
 Created on Wed Apr 10 09:05:01 2019
 
-@author: sissy
+@author: cici
+Practical 8: Working with information
 """
-
 import xml.dom.minidom
 import re
 import pandas as pd
 
 filePath=input('Please input your file path:')#Your file path
+fileName='go_obo.xml';
+resName='autophagosome.xlsx'
+file=filePath+'/'+fileName
+res=filePath+'/'+resName
 
 re_immu = re.compile(r'autophagosome')
 #Function to find childnodes 
@@ -39,3 +43,6 @@ for term in go:
         Child(id, resultSet)
         df = df.append(pd.DataFrame({'id':[id],'name':[name],'definition':[defstr],'childnodes':[len(resultSet)]})) 
         print(id, len(resultSet))
+
+#save to excel
+df.to_excel(res,index=False)
