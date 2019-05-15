@@ -55,3 +55,8 @@ def xml_to_cps():
 
 
 xml_to_cps()
+os.system('CopasiSE.exe predator-prey.cps')
+
+
+csvfile=open(r'C:\Users\sissy\Desktop\test Git\IBI1_2018-19\Practical13\modelResults.csv')
+
