@@ -2,8 +2,10 @@
 """
 Created on Wed Apr 17 09:10:59 2019
 
-@author: sissy
+@author: cici
+Practical 9: Implementation of a sequence comparison program in Python
 """
+#create a list of lists containing BLOSUM62
 m=[['NULL','A','R','N','D','C','Q','E','G','H','I','L','K','M','F','P','S','T','W','Y','V','B','Z','X','NULL'],
 ['A',4,-1,-2,-2,0,-1,-1,0,-2,-1,-1,-1,-1,-2,-1,1,0,-3,-2,0,-2,-1,0,-4], 
 ['R',-1,5,0,-2,-3,1,0,-2,0,-3,-2,2,-1,-3,-2,-1,-1,-3,-2,-3,-1,0,-1,-4], 
@@ -30,11 +32,13 @@ m=[['NULL','A','R','N','D','C','Q','E','G','H','I','L','K','M','F','P','S','T','
 ['X',0,-1,-1,-1,-2,-1,-1,-1,-1,-1,-1,-1,-1,-1,-2,0,0,-2,-1,-1,-1,-1,-1,-4], 
 ['NULL',-4,-4,-4,-4,-4,-4,-4,-4,-4,-4,-4,-4,-4,-4,-4,-4,-4,-4,-4,-4,-4,-4,-4,1]] 
 myDict={'A':1,'R':2,'N':3,'D':4,'C':5,'Q':6,'E':7,'G':8,'H':9,'I':10,'L':11,'K':12,'M':13,'F':14,'P':15,'S':16,'T':17,'W':18,'Y':19,'V':20,'B':21,'Z':22,'X':23}
+#input sequences
 seq01=input("Give me a protein sequence:")
 seq02=input("GIve me a protein sequence:")
+#split the sequences
 seq1=seq01.replace('\n','')
 seq2=seq02.replace('\n','')
-#edit_distance=0 #set initial distance as zero
+#set initial distance as zero
 score=0 #set initial score as zero
 count=0
 for i in range(len(seq1)): #compare each amino acid
@@ -47,8 +51,10 @@ for i in range(len(seq1)): #compare each amino acid
         column=myDict[seq2[i]]
         score=score+m[row][column]
         count=count+1
-        #edit_distance +=1 #add a score 1 if amino acids are different
+        #add a score 1 if amino acids are different
+percentage=count/len(seq1)
+#print out the results
 print("Sequence 1:",seq01)
 print("Sequence 2:",seq02)
 print("The BLOSUM62 score is:",score)
-print("The percentage identity is:",count)
+print("The percentage identity is:",percentage)
