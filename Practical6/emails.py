@@ -15,7 +15,7 @@ address=open('C:/Users/sissy/Desktop/test Git/IBI1_2018-19/Practical6/address_in
 r=[]#empty list
 #get information from csv file
 for line in address:
-    fields=line.split(r',')
+    fields=line.split(r',')#split
     if (len(fields)>1):
         if re.match(r'(\S+)@(\S+)',fields[1]):
             #check the email address
@@ -25,17 +25,17 @@ for line in address:
             #print the results of address validation
             print(fields[1],": Correct Address!")
             r.append(fields[1])
-#send emails
+#sending emails
 mail_host="smtp.zju.edu.cn"  
 mail_user=input('Please input user name:')   
 mail_pass=input('Please input password:')   
 Users=['Anna','Mary','Emma']
-n=0
 sender = mail_user+'@zju.edu.cn'
 print("From:",sender)
 body=open('C:/Users/sissy/Desktop/test Git/IBI1_2018-19/Practical6/body.txt','r')
 d=body.read()
 body.close()
+n=0
 while n<len(Users):
     receivers = r[n]
     m=d.replace('User',Users[n])#Modify the text
