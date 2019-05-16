@@ -8,11 +8,10 @@ Practical 5: Working with numbers
 
 #give me a string of words
 s=input('Please input a string of words:')
-#split s into individual words
+#split into individual words
 s=s.split(' ')
 n=0
 #creating an empty list
-
 L=[]
 #improved loop
 for element in s:

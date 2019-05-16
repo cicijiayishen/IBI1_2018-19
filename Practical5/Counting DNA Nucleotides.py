@@ -18,13 +18,12 @@ for word in DNA:
             myDict[word] += 1
         else:
             myDict[word] = 1
-myDict
 print(myDict)
+
 # Pie chart, where the slices will be ordered and plotted counter-clockwise:
 import matplotlib.pyplot as plt
-labels = myDict.keys()
+labels = myDict.keys()#able to handle when there are other letters
 sizes = myDict.values()
-#sizes = [A, T, G, C]
 explode = [0]*len(labels)
 fig1, ax1 = plt.subplots()
 ax1.pie(sizes, explode=explode, labels=labels, autopct='%1.1f%%',shadow=True, startangle=90)
