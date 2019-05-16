@@ -6,31 +6,9 @@ Created on Wed Apr 17 09:10:59 2019
 Practical 9: Implementation of a sequence comparison program in Python
 """
 #create a list of lists containing BLOSUM62
-m=[['NULL','A','R','N','D','C','Q','E','G','H','I','L','K','M','F','P','S','T','W','Y','V','B','Z','X','NULL'],
-['A',4,-1,-2,-2,0,-1,-1,0,-2,-1,-1,-1,-1,-2,-1,1,0,-3,-2,0,-2,-1,0,-4], 
-['R',-1,5,0,-2,-3,1,0,-2,0,-3,-2,2,-1,-3,-2,-1,-1,-3,-2,-3,-1,0,-1,-4], 
-['N',-2,0,6,1,-3,0,0,0,1,-3,-3,0,-2,-3,-2,1,0,-4,-2,-3,3,0,-1,-4], 
-['D',-2,-2,1,6,-3,0,2,-1,-1,-3,-4,-1,-3,-3,-1,0,-1,-4,-3,-3,4,1,-1,-4], 
-['C',0,-3,-3,-3,9,-3,-4,-3,-3,-1,-1,-3,-1,-2,-3,-1,-1,-2,-2,-1,-3,-3,-2,-4], 
-['Q',-1,1,0,0,-3,5,2,-2,0,-3,-2,1,0,-3,-1,0,-1,-2,-1,-2,0,3,-1,-4], 
-['E',-1,0,0,2,-4,2,5,-2,0,-3,-3,1,-2,-3,-1,0,-1,-3,-2,-2,1,4,-1,-4], 
-['G',0,-2,0,-1,-3,-2,-2,6,-2,-4,-4,-2,-3,-3,-2,0,-2,-2,-3,-3,-1,-2,-1,-4], 
-['H',-2,0,1,-1,-3,0,0,-2,8,-3,-3,-1,-2,-1,-2,-1,-2,-2,2,-3,0,0,-1,-4],
-['I',-1,-3,-3,-3,-1,-3,-3,-4,-3,4,2,-3,1,0,-3,-2,-1,-3,-1,3,-3,-3,-1,-4], 
-['L',-1,-2,-3,-4,-1,-2,-3,-4,-3,2,4,-2,2,0,-3,-2,-1,-2,-1,1,-4,-3,-1,-4], 
-['K',-1,2,0,-1,-3,1,1,-2,-1,-3,-2,5,-1,-3,-1,0,-1,-3,-2,-2,0,1,-1,-4], 
-['M',-1,-1,-2,-3,-1,0,-2,-3,-2,1,2,-1,5,0,-2,-1,-1,-1,-1,1,-3,-1,-1,-4], 
-['F',-2,-3,-3,-3,-2,-3,-3,-3,-1,0,0,-3,0,6,-4,-2,-2,1,3,-1,-3,-3,-1,-4], 
-['P',-1,-2,-2,-1,-3,-1,-1,-2,-2,-3,-3,-1,-2,-4,7,-1,-1,-4,-3,-2,-2,-1,-2,-4],
-['S',1,-1,1,0,-1,0,0,0,-1,-2,-2,0,-1,-2,-1,4,1,-3,-2,-2,0,0,0,-4], 
-['T',0,-1,0,-1,-1,-1,-1,-2,-2,-1,-1,-1,-1,-2,-1,1,5,-2,-2,0,-1,-1,0,-4], 
-['W',-3,-3,-4,-4,-2,-2,-3,-2,-2,-3,-2,-3,-1,1,-4,-3,-2,11,2,-3,-4,-3,-2,-4], 
-['Y',-2,-2,-2,-3,-2,-1,-2,-3,2,-1,-1,-2,-1,3,-3,-2,-2,2,7,-1,-3,-2,-1,-4], 
-['V',0,-3,-3,-3,-1,-2,-2,-3,-3,3,1,-2,1,-1,-2,-2,0,-3,-1,4,-3,-2,-1,-4], 
-['B',-2,-1,3,4,-3,0,1,-1,0,-3,-4,0,-3,-3,-2,0,-1,-4,-3,-3,4,1,-1,-4], 
-['Z',-1,0,0,1,-3,3,4,-2,0,-3,-3,1,-1,-3,-1,0,-1,-3,-2,-2,1,4,-1,-4], 
-['X',0,-1,-1,-1,-2,-1,-1,-1,-1,-1,-1,-1,-1,-1,-2,0,0,-2,-1,-1,-1,-1,-1,-4], 
-['NULL',-4,-4,-4,-4,-4,-4,-4,-4,-4,-4,-4,-4,-4,-4,-4,-4,-4,-4,-4,-4,-4,-4,-4,1]] 
+import pandas as pd
+data=pd.read_csv('C:/Users/sissy/Desktop/test Git/IBI1_2018-19/Practical9/BLOSUM62.txt',sep=' +',engine='python')
+m=data.to_dict()
 myDict={'A':1,'R':2,'N':3,'D':4,'C':5,'Q':6,'E':7,'G':8,'H':9,'I':10,'L':11,'K':12,'M':13,'F':14,'P':15,'S':16,'T':17,'W':18,'Y':19,'V':20,'B':21,'Z':22,'X':23}
 #input sequences
 seq01=input("Give me a protein sequence:")
@@ -41,20 +19,24 @@ seq2=seq02.replace('\n','')
 #set initial distance as zero
 score=0 #set initial score as zero
 count=0
+ali=[]#alignment
 for i in range(len(seq1)): #compare each amino acid
     if seq1[i]!=seq2[i]:
-        row=myDict[seq1[i]]
-        column=myDict[seq2[i]]
-        score=score+m[row][column]
+        score=score+m[seq1[i]][seq2[i]]
+        if m[seq1[i]][seq2[i]]>0:
+            ali.append('+')
+        elif m[seq1[i]][seq2[i]]<0:
+            ali.append('-')
     if seq1[i]==seq2[i]:
-        row=myDict[seq1[i]]
-        column=myDict[seq2[i]]
-        score=score+m[row][column]
-        count=count+1
-        #add a score 1 if amino acids are different
+        score=score+m[seq1[i]][seq2[i]]
+        count=count+1#count the number of identical amino acid
+        ali.append(seq1[i])#add the letter to alignment
+ali=''.join(ali)
 percentage=count/len(seq1)
 #print out the results
 print("Sequence 1:",seq01)
-print("Sequence 2:",seq02)
+print("Alignment:",ali)
+print("Sequence:",seq02)
 print("The BLOSUM62 score is:",score)
 print("The percentage identity is:",percentage)
+print("The normalised BLOSUM62 score is:",score/len(seq1))
