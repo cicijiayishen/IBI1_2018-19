@@ -26,10 +26,10 @@ for n in range(0,101):
         x = infectedIndex[0][i]
         y = infectedIndex[1][i]
         # infect each neighbour with probability beta
-        # infect all 8 neighbours (this is a bit finicky, is there a better way?):
+        # infect all 8 neighbours 
         for xNeighbour in range(x-1,x+2):
             for yNeighbour in range(y-1,y+2):
-                # don't infect yourself! (Is this strictly necessary?)
+                # don't infect yourself! 
                 if (xNeighbour,yNeighbour) != (x,y):
                     # make sure I don't fall off an edge
                     if xNeighbour != -1 and yNeighbour != -1 and xNeighbour!=100 and yNeighbour!=100:
