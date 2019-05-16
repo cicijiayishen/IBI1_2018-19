@@ -2,11 +2,15 @@
 """
 Created on Wed Mar 13 10:27:05 2019
 
-@author: sissy
+@author: cici
+Practical4: Variables, Booleans and Loops
 """
 
 #assign x as a positive integer
-x=2019
+x=int(input("Please input a positive integer:"))
+#check validity
+if x<=0:
+    print("Error! The number is not a positive integer.")
 #write the template of the outcome 
 b=str(x)+" is "
 c="2**"

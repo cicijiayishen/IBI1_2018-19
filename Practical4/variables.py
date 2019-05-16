@@ -2,7 +2,8 @@
 """
 Created on Wed Mar 13 09:27:22 2019
 
-@author: sissy
+@author: cici
+Practical4: Variables, Booleans and Loops
 """
 
 #Variables

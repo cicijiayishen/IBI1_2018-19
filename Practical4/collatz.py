@@ -2,12 +2,13 @@
 """
 Created on Wed Mar 13 09:51:54 2019
 
-@author: sissy
+@author: cici
+Practical4: Variables, Booleans and Loops
 """
 
 #start from a positive integer n
 n=int(input('Please input a positive integer:'))
-if n<=0:
+if n<=0:#check validity
     print('Error: The number is not positive.')
 elif n>0:
     #if n is even
