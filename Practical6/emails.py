@@ -11,7 +11,7 @@ import smtplib
 from email.mime.text import MIMEText
 from email.header import Header
 #open csv file
-address=open(r'C:\Users\sissy\Desktop\test Git\IBI1_2018-19\Practical6\address_information.csv','r')
+address=open('C:/Users/sissy/Desktop/test Git/IBI1_2018-19/Practical6/address_information.csv','r')
 r=[]
 #get information from csv file
 for line in address:
@@ -33,12 +33,15 @@ Users=['Anna','Mary','Emma']
 n=0
 sender = '3180111441@zju.edu.cn'
 print("From:",sender)
+body=open('C:/Users/sissy/Desktop/test Git/IBI1_2018-19/Practical6/body.txt','r')
+d=body.read()
+body.close()
 while n<len(Users):
     receivers = r[n]
-    m='Dear '+ Users[n]+ ",\nPlease find the results of your gene set linkage analysis result in attached file.\nThis is an email sent by the server, please don't reply.\nThank you for using GSLA."
+    m=d.replace('User',Users[n])#Modify the text
     message = MIMEText(m, 'plain', 'utf-8')
     message['From'] = Header("Cici", 'utf-8')
-    message['To'] =  Header("Anna", 'utf-8')
+    message['To'] =  Header(Users[n], 'utf-8')
     subject = 'To '+Users[n]+':Your analysis job has been finished!'
     message['Subject'] = Header(subject, 'utf-8')    
     try:

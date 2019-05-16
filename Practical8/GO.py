@@ -9,7 +9,7 @@ import xml.dom.minidom
 import re
 import pandas as pd
 
-filePath=input('Please input your file path:')#Your file path
+filePath=r'C:/Users/sissy/Desktop/test Git/IBI1_2018-19/Practical8';
 fileName='go_obo.xml';
 resName='autophagosome.xlsx'
 file=filePath+'/'+fileName
@@ -24,13 +24,16 @@ def Child(id, resultSet):
         for parent in parents:
             if parent.childNodes[0].data == id:
                 resultSet.add(geneid)
+#                don't use resultSet = resultSet | set([geneid])
+#                otherwise you will create a new set instead of modifying the existing one
+#                print (resultSet)
                 Child(geneid, resultSet)
                 
 #create a pandas.Dataframe to store the output
 df = pd.DataFrame(columns=['id','name','definition','childnodes'])
 
 #create the DOM tree    
-DOMTree = xml.dom.minidom.parse(filePath) 
+DOMTree = xml.dom.minidom.parse(file) 
 obo = DOMTree.documentElement
 go = obo.getElementsByTagName('term')
 for term in go:
@@ -43,6 +46,5 @@ for term in go:
         Child(id, resultSet)
         df = df.append(pd.DataFrame({'id':[id],'name':[name],'definition':[defstr],'childnodes':[len(resultSet)]})) 
         print(id, len(resultSet))
-
 #save to excel
 df.to_excel(res,index=False)
