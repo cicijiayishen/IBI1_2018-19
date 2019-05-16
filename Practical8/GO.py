@@ -5,10 +5,11 @@ Created on Wed Apr 10 09:05:01 2019
 @author: cici
 Practical 8: Working with information
 """
+#import necessary libraries
 import xml.dom.minidom
 import re
 import pandas as pd
-
+#filepath
 filePath=r'C:/Users/sissy/Desktop/test Git/IBI1_2018-19/Practical8';
 fileName='go_obo.xml';
 resName='autophagosome.xlsx'
