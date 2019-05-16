@@ -12,7 +12,7 @@ from email.mime.text import MIMEText
 from email.header import Header
 #open csv file
 address=open('C:/Users/sissy/Desktop/test Git/IBI1_2018-19/Practical6/address_information.csv','r')
-r=[]
+r=[]#empty list
 #get information from csv file
 for line in address:
     fields=line.split(r',')
@@ -31,7 +31,7 @@ mail_user=input('Please input user name:')
 mail_pass=input('Please input password:')   
 Users=['Anna','Mary','Emma']
 n=0
-sender = '3180111441@zju.edu.cn'
+sender = mail_user+'@zju.edu.cn'
 print("From:",sender)
 body=open('C:/Users/sissy/Desktop/test Git/IBI1_2018-19/Practical6/body.txt','r')
 d=body.read()
